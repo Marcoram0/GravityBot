@@ -250,8 +250,8 @@ const beginEmbed = new MessageEmbed()
 							setTimeout(() => {
 
 								let second6 = new MessageEmbed()
-									.setColor(word)
-									.setTitle(`Fast Typer`)
+								.setColor("#ff7c00")
+									.setTitle(word)
 									.setDescription(`Game begins in 5 seconds...\nGame begins in 4 seconds...\nGame begins in 3 seconds...\nGame begins in 2 seconds...\nGame begins in 1 second...\n**The word is... ${word}**`)
 									.setTimestamp()
 
@@ -408,127 +408,6 @@ client.on("messageCreate", async message => {
 		  
 	}
 })
-client.on("messageCreate", async message => {
-	let word = "ERROR"
-	this.word = ""
-	this.message = message
-	if (message.author.bot) return;
-	if (message.content.toLowerCase() == "!type") {
-
-word = typerwordlist[Math.floor(Math.random() * typerwordlist.length)];
-
-let beginEmbed = new MessageEmbed()
-	.setColor("#960202")
-	.setTitle(`Fast Typer`)
-	.setDescription(`**Choosing a word...**`)
-	.setTimestamp()
-
-message.channel.send({ embeds: [beginEmbed] }).then(emsg => {
-
-	
-	message.channel.awaitMessages({ word, max: 1, time: 60000 })
-			.then(async collected => {
-		console.log(collected)
-				collected.first().react('🎉')
-
-			let winnerEmbed = new MessageEmbed()
-				.setColor("YELLOW")
-				.setTitle(`Fast Typer`)
-				.setDescription(`Game begins in 5 seconds...\nGame begins in 4 seconds...\nGame begins in 3 seconds...\nGame begins in 2 seconds...\nGame begins in 1 second...
-\nThe word is ${word}\n\n**GG!**\n**The winner is ${collected.first().author}**`)
-				.setTimestamp()
-			emsg.edit({ embeds: [winnerEmbed] })
-		}).catch(err => {
-
-			let timeEmbed = new MessageEmbed()
-				.setColor("#960202")
-				.setTitle(`Fast Typer`)
-				.setDescription(`**You guys were to late to type the word correctly!**`)
-				.setTimestamp()
-			return emsg.edit({ embeds: [timeEmbed] })
-		})
-
-	setTimeout(() => {
-
-		let second1 = new MessageEmbed()
-			.setColor("#b80404")
-			.setTitle(`Fast Typer`)
-			.setDescription(` **Games begins in 5 seconds...**\nGame begins in 4 seconds...\nGame begins in 3 seconds...\nGame begins in 2 seconds...\nGame begins in 1 second...`)
-			.setTimestamp()
-
-		emsg.edit({ embeds: [second1] })
-
-		setTimeout(() => {
-
-			let second2 = new MessageEmbed()
-				.setColor("#ff0000")
-				.setTitle(`Fast Typer`)
-				.setDescription(`Game begins in 5 seconds...\n**Game begins in 4 seconds...**\nGame begins in 3 seconds...\nGame begins in 2 seconds...\nGame begins in 1 second...`)
-				.setTimestamp()
-
-			emsg.edit({ embeds: [second2] })
-
-			setTimeout(() => {
-
-				let second3 = new MessageEmbed()
-					.setColor("#c45f00")
-					.setTitle(`Fast Typer`)
-					.setDescription(`Game begins in 5 seconds...\nGame begins in 4 seconds...\n**Game begins in 3 seconds...**\nGame begins in 2 seconds...\nGame begins in 1 second...`)
-					.setTimestamp()
-
-				emsg.edit({ embeds: [second3] })
-
-				setTimeout(() => {
-
-					let second4 = new MessageEmbed()
-						.setColor("#e06e02")
-						.setTitle(`Fast Typer`)
-						.setDescription(`Game begins in 5 seconds...\nGame begins in 4 seconds...\nGame begins in 3 seconds...\n**Game begins in 2 seconds...**\nGame begins in 1 second...`)
-						.setTimestamp()
-
-					emsg.edit({ embeds: [second4] })
-
-					setTimeout(() => {
-
-						let second5 = new MessageEmbed()
-							.setColor("#ff7c00")
-							.setTitle(`Fast Typer`)
-							.setDescription(`Game begins in 5 seconds...\nGame begins in 4 seconds...\nGame begins in 3 seconds...\nGame begins in 2 seconds...\n**Game begins in 1 second...**\nThe word is...`)
-							.setTimestamp()
-
-						emsg.edit({ embeds: [second5] })
-
-						setTimeout(() => {
-
-							let second6 = new MessageEmbed()
-								.setColor("#00ff00")
-								.setTitle(`Fast Typer`)
-								.setDescription(`Game begins in 5 seconds...\nGame begins in 4 seconds...\nGame begins in 3 seconds...\nGame begins in 2 seconds...\nGame begins in 1 second...\n**The word is... ${word}**`)
-								.setTimestamp()
-
-							emsg.edit({ embeds: [second6] })
-
-						}, 1000)
-
-					}, 1000)
-
-				}, 1000)
-
-			}, 1000)
-
-		}, 1000)
-
-	}, 1000)
-
-})
-}
-}
-)
-
-
-
-
-
 
 // Login ---------------------------------------------------------------------------------------------------------------------------------------------
 client.login(config.token)
